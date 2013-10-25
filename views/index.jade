@@ -5,15 +5,19 @@ block content
     h1= title
     p Welcome to #{title}
     div.row
-      div.span4
-        canvas#display1v(width="",height="")
-      div.span4
-        p 2
-      div.span4
-        p 3
+      div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
+        canvas#display1v()
+        script display1v = HydraVoltDisplay("display1v")
+      div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
+        canvas#display2v()
+        script display2v = HydraVoltDisplay("display2v")
+      div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
+        canvas#display3v()
+        script display3v = HydraVoltDisplay("display3v")
     div.row
+      div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
+        canvas#display1a()
+        script display1a = HydraAmpDisplay("display1a")
       div.span4
-        canvas#display1a(width="",height="")
-      div#span4
-      div#span4
+      div.span4
       
