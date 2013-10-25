@@ -18,6 +18,10 @@ block content
       div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
         canvas#display1a()
         script display1a = HydraAmpDisplay("display1a")
-      div.span4
-      div.span4
-      
+      div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
+        canvas#display2a()
+        script display2a = HydraAmpDisplay("display2a")
+      div.span4.well.well-small(style="width: 300px; height: 140px; background: black")
+        canvas#display3a()
+        script display3a = HydraAmpDisplay("display3a")
+    script window.setTimeout('updatdeDisplay(display1v)', 100)

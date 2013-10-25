@@ -37,3 +37,9 @@ function HydraAmpDisplay(canvasID) {
   return(display);
 
 }
+
+function updatdeDisplay(display) {
+  $.get("val.txt", function(data,status) {
+    display.setValue(data);
+  });
+}
