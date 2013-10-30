@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -7,6 +6,7 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
+var faye = require('faye');
 var path = require('path');
 
 var app = express();
@@ -33,6 +33,21 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app);
+var bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
+
+bayeux.attach(server);
+
+server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+var testPub = function(){
+  bayeux.getClient().publish('/channel1/', {
+    volts: 3.45,
+    amps:  1.4
+  });
+  console.log('Pub') 
+}
+
+setInterval(testPub,1000);
