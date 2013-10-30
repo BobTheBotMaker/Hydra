@@ -43,11 +43,10 @@ server.listen(app.get('port'), function(){
 });
 
 var testPub = function(){
-  bayeux.getClient().publish('/channel1/', {
+  bayeux.getClient().publish('/channel1', {
     volts: 3.45,
     amps:  1.4
   });
-  console.log('Pub') 
 }
 
 setInterval(testPub,1000);

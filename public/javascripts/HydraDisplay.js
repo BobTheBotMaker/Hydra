@@ -18,9 +18,14 @@ function HydraDisplay(canvasID, colorOn, colorOff) {
 
 }
 
-function updateDisplay(display) {
-  $.get("val.txt", function(data,status) {
-    display.setValue(data);
-    window.setTimeout(updateDisplay, 100, display);
+function setupFayeConnection(display){
+  var client = new Faye.Client('http://localhost:3000/faye');
+  
+  client.subscribe('/channel1', function(message) {
+    updateDisplay(display, message.volts);
   });
+}
+
+function updateDisplay(display, volts) {
+  display.setValue(volts)
 }
