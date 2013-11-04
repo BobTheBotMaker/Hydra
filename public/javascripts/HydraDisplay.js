@@ -1,6 +1,6 @@
-function HydraDisplay(canvasID, colorOn, colorOff) {
+function HydraDisplay(canvasId, colorOn, colorOff) {
   
-  var display = new SegmentDisplay(canvasID);
+  var display = new SegmentDisplay(canvasId);
   display.pattern         = "##.##";
   display.displayAngle    = 5.5;
   display.digitHeight     = 3.5;
@@ -14,18 +14,19 @@ function HydraDisplay(canvasID, colorOn, colorOff) {
   display.colorOff        = colorOff;
   display.draw();
   
-  return(display);
-
+  return {
+    display: display,
+    channel: canvasId
+  };
 }
 
-function setupFayeConnection(display){
-  var client = new Faye.Client('http://localhost:3000/faye');
-  
-  client.subscribe('/channel1', function(message) {
-    updateDisplay(display, message.volts);
+function setupDisplay(fayeClient, options) {
+  fayeClient.subscribe('/' + options.channel, function(message) {
+    updateDisplay(options.display, message.volts.toString());
   });
 }
 
 function updateDisplay(display, volts) {
   display.setValue(volts)
 }
+
