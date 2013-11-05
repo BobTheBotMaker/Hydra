@@ -13,20 +13,20 @@ function HydraDisplay(canvasId, colorOn, colorOff) {
   display.colorOn         = colorOn;
   display.colorOff        = colorOff;
   display.draw();
-  
+
+  var channel = canvasId.slice(0, -1);
+  var measures = canvasId.substr(-1 ,1);
+
   return {
     display: display,
-    channel: canvasId
+    channel: channel,
+    measures: measures
   };
 }
 
-function setupDisplay(fayeClient, options) {
-  fayeClient.subscribe('/' + options.channel, function(message) {
-    updateDisplay(options.display, message.volts.toString());
+function setupDisplay(fayeClient, displayOpts) {
+  fayeClient.subscribe('/' + displayOpts.channel, function(message) {
+    displayOpts.display.setValue(message[displayOpts.measures]);
   });
-}
-
-function updateDisplay(display, volts) {
-  display.setValue(volts)
 }
 
