@@ -10,6 +10,8 @@ var http = require('http');
 var faye = require('faye');
 var path = require('path');
 
+var hydraComm = require('./lib/hydra.js')
+
 var app = express();
 
 // all environments
@@ -50,3 +52,5 @@ var testPub = function(){
  }
 
 setInterval(testPub,1000);
+
+hydraComm.test();
