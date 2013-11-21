@@ -30,3 +30,8 @@ function setupDisplay(fayeClient, displayOpts) {
   });
 }
 
+function IOSlider() {
+  $(document).ready(function () {
+    $("#jqxslider").jqxSlider({ theme: 'summer', value: 7 });
+  });
+}
