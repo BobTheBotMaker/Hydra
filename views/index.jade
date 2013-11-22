@@ -1,31 +1,31 @@
 extends layout
 
 block content
-    div.hero-unit
+    div.jumbotron
         h1= title
         p Welcome to #{title}
         div.row
-            div.span4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
+            div.col-md-4.well-lg(style="width: 350px; height: 140px; background: rgb(36, 30, 30)")
                 canvas#display1v()
                 script display1v = HydraDisplay("display1v", "#ff2c0f", "#331605")
-            div.span4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
+            div.col-md-4.well-lg(style="width: 350px; height: 140px; background: rgb(36, 30, 30)")
                 canvas#display2v()
                 script display2v = HydraDisplay("display2v", "#ff2c0f", "#331605")
-            div.span4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
+            div.col-md-4.well-lg(style="width: 350px; height: 140px; background: rgb(36, 30, 30)")
                 canvas#display3v()
                 script display3v = HydraDisplay("display3v", "#ff2c0f", "#331605")
         div.row
-            div#slider1v.span4.well.well-small(style="width: 300px")
-            div#slider2v.span4.well.well-small(style="width: 300px")
-            div#slider3v.span4.well.well-small(style="width: 300px")
+            div#slider1v.col-md-4.well-lg(style="width: 350px")
+            div#slider2v.col-md-4.well-lg(style="width: 350px")
+            div#slider3v.col-md-4.well-lg(style="width: 350px")
         div.row
-            div.span4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
+            div.col-md-4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
                 canvas#display1a()
                 script display1a = HydraDisplay("display1a", "#24dd22", "#1b2405")
-            div.span4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
+            div.col-md-4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
                 canvas#display2a()
                 script display2a = HydraDisplay("display2a", "#24dd22", "#1b2405")
-            div.span4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
+            div.col-md-4.well.well-small(style="width: 300px; height: 140px; background: rgb(36, 30, 30)")
                 canvas#display3a()
                 script display3a = HydraDisplay("display3a", "#24dd22", "#1b2405")
         script fayeClient = new Faye.Client('http://localhost:3000/faye');
