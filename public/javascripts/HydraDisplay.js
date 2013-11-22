@@ -30,8 +30,8 @@ function setupDisplay(fayeClient, displayOpts) {
   });
 }
 
-function IOSlider() {
+function setupSlider(sliderId) {
   $(document).ready(function () {
-    $("#jqxslider").jqxSlider({ theme: 'summer', value: 7 });
+    $("#"+sliderId).jqxSlider({ theme: 'summer', value: 7 });
   });
 }
