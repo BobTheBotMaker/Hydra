@@ -29,5 +29,7 @@ block content
                 canvas#display3a()
                 script display3a = HydraDisplay("display3a", "#24dd22", "#1b2405")
         script fayeClient = new Faye.Client('http://localhost:3000/faye');
-        script setupDisplay(fayeClient, display1v); setupDisplay(fayeClient, display1a)
-        script setupSlider("slider1v"); setupSlider("slider2v"); setupSlider("slider3v");
+        script.
+               setupDisplay(fayeClient, display1v);
+               setupDisplay(fayeClient, display1a);
+               setupSlider(["#slider1v","#slider2v","#slider3v"]);

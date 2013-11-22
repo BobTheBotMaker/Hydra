@@ -32,6 +32,8 @@ function setupDisplay(fayeClient, displayOpts) {
 
 function setupSlider(sliderId) {
   $(document).ready(function () {
-    $("#"+sliderId).jqxSlider({ theme: 'summer', value: 7 });
+    sliderId.forEach(function(e){
+      $(e).jqxSlider({ theme: 'summer', value: 7 });
+    })
   });
 }
