@@ -1,6 +1,9 @@
-function HydraDisplay(canvasId, colorOn, colorOff) {
-  
-  var display = new SegmentDisplay(canvasId);
+function HydraDisplay(canvasId, colorOn, colorOff, display) {
+
+  if(display === undefined) {
+    display = new SegmentDisplay(canvasId);
+  }
+
   display.pattern         = "##.##";
   display.displayAngle    = 5.5;
   display.digitHeight     = 3.5;
