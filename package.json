@@ -9,7 +9,8 @@
     "express": "3.4.4",
     "jade": "*",
     "faye": "*",
-    "serialport": "*"
+    "serialport": "*",
+    "node-bitarray": "*"
   },
   "devDependencies": {
     "node-jasmine": "*",

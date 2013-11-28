@@ -8,9 +8,12 @@
 
 describe("The Server test suite", function(){
 
+  var p = require("packet-parser")
+
   it("should be true", function(){
     expect(true).toBe(true);
   })
 
-
+  it("should extract mV and mA",
+  )
 })
