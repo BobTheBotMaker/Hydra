@@ -13,7 +13,7 @@
     "node-bitarray": "*"
   },
   "devDependencies": {
-    "node-jasmine": "*",
+    "jasmine-node": "*",
     "karma-script-launcher": "~0.1.0",
     "karma-chrome-launcher": "~0.1.0",
     "karma-firefox-launcher": "~0.1.0",
