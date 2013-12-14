@@ -16,8 +16,21 @@ describe("Bit fields test suite", function () {
   var structure = {
     f1: {start: 0, len: 5},
     f2: {start: 4, len: 3},
-    f3: {start: 7, len: 4}
+    f3: {start: 7, len: 4},
+    f5: {start: 5},
+    f6: {start: 3}
   };
+
+  it("should handle single bit fields", function(){
+    var ba = bf.build(structure, bitArray);
+
+    expect(ba.f5.data).toEqual([0]);
+    expect(ba.f6.data).toEqual([1]);
+
+    expect(ba.f5.toBase(10)).toEqual("0");
+    expect(ba.f6.toBase(10)).toEqual("1");
+
+  })
 
   it("should split an array based on structure", function(){
     var ba = bf.build(structure, bitArray);
@@ -35,10 +48,16 @@ describe("Bit fields test suite", function () {
     expect(ba.f3.data).toEqual([1, 1, 1]);
   })
 
-  it("should convert to base 10", function(){
+  it("should convert to base 10 from a bit array", function(){
     var ba = bf.build(structure, bitArray);
 
-    expect(ba.f1.toBase(10)).toEqual(27);
+    expect(ba.f1.toBase(10)).toEqual("27");
+  })
+
+  it("should convert to base 10 from a bit string", function(){
+    var ba = bf.build(structure, bitArray);
+
+    expect(ba.f3.toBase(10)).toEqual("7");
   })
 
 });
