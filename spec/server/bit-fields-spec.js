@@ -6,21 +6,39 @@
  * To change this template use File | Settings | File Templates.
  */
 
-describe("Bit fields test suite", function(){
+describe("Bit fields test suite", function () {
 
   var bf = require("../../lib/bit-fields.js");
 
-  var bitString = "11011011110011001100101";
-  var bitArray = [1,1,0,1,1,0,1,1,1,1,0,0,1,1,0,0,1,1,0,0,1,0,1];
+  var bitString = "1101101111";
+  var bitArray = [1, 1, 0, 1, 1, 0, 1, 1, 1, 1];
+
+  var structure = {
+    f1: {start: 0, len: 5},
+    f2: {start: 4, len: 3},
+    f3: {start: 7, len: 4}
+  };
 
   it("should split an array based on structure", function(){
-    var structure = {
-      f1: {start: 0, len: 5},
-      f2: {start: 0, len: 5},
-      f3: {start: 0, len: 5}
-    }
     var ba = bf.build(structure, bitArray);
-    console.log("ba: " + ba.f1);
-    expect(ba.f1).toBe([1,1,0,1,1]);
+
+    expect(ba.f1.data).toEqual([1, 1, 0, 1, 1]);
+    expect(ba.f2.data).toEqual([1, 0, 1]);
+    expect(ba.f3.data).toEqual([1, 1, 1]);
   })
-})
+
+  it("should split a string based on structure", function(){
+    var ba = bf.build(structure, bitString);
+
+    expect(ba.f1.data).toEqual([1, 1, 0, 1, 1]);
+    expect(ba.f2.data).toEqual([1, 0, 1]);
+    expect(ba.f3.data).toEqual([1, 1, 1]);
+  })
+
+  it("should convert to base 10", function(){
+    var ba = bf.build(structure, bitArray);
+
+    expect(ba.f1.toBase(10)).toEqual(27);
+  })
+
+});
