@@ -22,7 +22,7 @@ describe("Bit fields test suite", function () {
   };
 
   it("should handle single bit fields", function(){
-    var ba = bf.build(structure, bitArray);
+    var ba = new bf.BitField(structure, bitArray);
 
     expect(ba.f5.data).toEqual([0]);
     expect(ba.f6.data).toEqual([1]);
@@ -33,7 +33,7 @@ describe("Bit fields test suite", function () {
   })
 
   it("should split an array based on structure", function(){
-    var ba = bf.build(structure, bitArray);
+    var ba =  new bf.BitField(structure, bitArray);
 
     expect(ba.f1.data).toEqual([1, 1, 0, 1, 1]);
     expect(ba.f2.data).toEqual([1, 0, 1]);
@@ -41,7 +41,7 @@ describe("Bit fields test suite", function () {
   })
 
   it("should split a string based on structure", function(){
-    var ba = bf.build(structure, bitString);
+    var ba =  new bf.BitField(structure, bitString);
 
     expect(ba.f1.data).toEqual([1, 1, 0, 1, 1]);
     expect(ba.f2.data).toEqual([1, 0, 1]);
@@ -49,15 +49,22 @@ describe("Bit fields test suite", function () {
   })
 
   it("should convert to base 10 from a bit array", function(){
-    var ba = bf.build(structure, bitArray);
+    var ba =  new bf.BitField(structure, bitArray);
 
     expect(ba.f1.toBase(10)).toEqual("27");
   })
 
   it("should convert to base 10 from a bit string", function(){
-    var ba = bf.build(structure, bitArray);
+    var ba =  new bf.BitField(structure, bitArray);
 
     expect(ba.f3.toBase(10)).toEqual("7");
+  })
+
+  it("should convert to a buffer", function(){
+    var ba =  new bf.BitField(structure, bitArray);
+
+    var x = ba.toBuffer();
+    console.log("Buf: " + x);
   })
 
 });
