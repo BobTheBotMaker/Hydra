@@ -20,6 +20,5 @@ describe("The Server test suite", function(){
 
       expect(vals.mV).toBe(32767);
       expect(vals.mA).toBe(4095);
-    }
-  )
+    })
 })
