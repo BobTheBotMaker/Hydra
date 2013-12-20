@@ -25,7 +25,7 @@ describe("Bit fields test suite", function () {
   };
 
   it("should handle single bit fields", function(){
-    var ba = new bf.BitField(structure, bitArray);
+    var ba = bf.fromArray(structure, bitArray);
 
     expect(ba.bitField.f5.data).toEqual([0]);
     expect(ba.bitField.f6.data).toEqual([1]);
@@ -36,7 +36,7 @@ describe("Bit fields test suite", function () {
   })
 
   it("should split an array based on structure", function(){
-    var ba =  new bf.BitField(structure, bitArray);
+    var ba = bf.fromArray(structure, bitArray);
 
     expect(ba.bitField.f1.data).toEqual([1, 1, 0, 1, 1]);
     expect(ba.bitField.f2.data).toEqual([1, 0, 1]);
@@ -46,7 +46,7 @@ describe("Bit fields test suite", function () {
   })
 
   it("should split a string based on structure", function(){
-    var ba =  new bf.BitField(structure, bitString);
+    var ba = bf.fromString(structure, bitString);
 
     expect(ba.bitField.f1.data).toEqual([1, 1, 0, 1, 1]);
     expect(ba.bitField.f2.data).toEqual([1, 0, 1]);
@@ -55,19 +55,19 @@ describe("Bit fields test suite", function () {
   })
 
   it("should convert to base 10 from a bit array", function(){
-    var ba =  new bf.BitField(structure, bitArray);
+    var ba = bf.fromArray(structure, bitArray);
 
     expect(ba.bitField.f1.toBase(10)).toEqual("27");
   })
 
   it("should convert to base 10 from a bit string", function(){
-    var ba =  new bf.BitField(structure, bitArray);
+    var ba = bf.fromArray(structure, bitArray);
 
     expect(ba.bitField.f3.toBase(10)).toEqual("7");
   })
 
   it("should convert bits to octet strings", function(){
-    var ba =  new bf.BitField(structure, bitArray);
+    var ba = bf.fromArray(structure, bitArray);
 
     expect(ba.bitField.f4.toOctets().length).toEqual(8);
     expect(ba.bitField.f5.toOctets().length).toEqual(8);
@@ -84,8 +84,21 @@ describe("Bit fields test suite", function () {
       f4: {start: 21, len: 7}
     }
 
-    var ba =  new bf.BitField(ABC_Struct, ABCs);
+    var ba = bf.fromString(ABC_Struct, ABCs);
     expect(ba.toBuffer()).toEqual(['@','A','B','C']);
   })
 
+  it("should take a buffer and create a bit array", function(){
+    var inputBuffer = new Buffer("Andre");
+    var buffStruct = {
+      f1: {start: 0, len: 7},
+      f2: {start: 7, len: 7},
+      f3: {start: 14, len: 7},
+      f4: {start: 21, len: 7},
+      f5: {start: 28, len: 7}
+    }
+    var ba = bf.fromBuffer(buffStruct, inputBuffer);
+
+    expect(ba.toBuffer()).toEqual(['A','n','d','r','e'])
+  })
 });
