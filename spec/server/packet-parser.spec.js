@@ -9,16 +9,11 @@
 describe("The Server test suite", function(){
 
   var p = require("../../lib/packet-parser")
-  var packet = "11111111111111111111111111111111";
+  var packet = [0x00,0x00,0x00,0x73, 0x00, 0x00, 0x6E, 0x00, 0x70, 0x00,0x73, 0x6E, 0x70, 0x00];
 
-  it("should be true", function(){
-    expect(true).toBe(true);
+  it("should print yea", function(){
+    var parser = new p.Parser();
+    packet.forEach(parser.parse);
   })
 
-  it("should return mV and mA", function(){
-      var vals = p.parse(packet);
-
-      expect(vals.mV).toBe(32767);
-      expect(vals.mA).toBe(4095);
-    })
 })
