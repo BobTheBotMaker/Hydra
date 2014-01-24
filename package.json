@@ -10,7 +10,8 @@
     "jade": "*",
     "faye": "*",
     "serialport": "*",
-    "node-bitarray": "*"
+    "node-bitarray": "*",
+    "sleep": "*" 
   },
   "devDependencies": {
     "jasmine-node": "*",
