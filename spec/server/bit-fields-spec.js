@@ -92,7 +92,8 @@ describe("Bit fields test suite", function () {
   it("should convert an int array to bits", function(){
     var ba = bf.fromIntArray(intStructure, intArray);
 
-    expect(ba.bitField.f1.data).toEqual([0,1,1,1,0,0,1,1])
+    expect(ba.bitField.f1.data).toEqual([0,1,1,1,0,0,1,1]);
+    expect(parseInt(ba.bitField.f1.toBase(10), 10)).toEqual(115);
   })
 
 });
