@@ -78,31 +78,4 @@ describe("Bit fields test suite", function () {
     expect(ba.bitField.f4.toOctets().length).toEqual(8);
   })
 
-  it("should convert a known bit string to a buffer", function(){
-    var ABCs = "1000000100000110000101000011";
-    var ABC_Struct = {
-      f1: 7,
-      f2: 7,
-      f3: 7,
-      f4: 7
-    }
-
-    var ba = bf.fromString(ABC_Struct, ABCs);
-    console.log("ba to buffer: " + ba.toBuffer());
-    //expect(ba.toBuffer()).toEqual(new Buffer(['@','A','B','C']));
-  })
-
-  it("should take a buffer and create a bit array", function(){
-    var inputBuffer = new Buffer("Andre");
-    var buffStruct = {
-      f1: {start: 0, len: 7},
-      f2: {start: 7, len: 7},
-      f3: {start: 14, len: 7},
-      f4: {start: 21, len: 7},
-      f5: {start: 28, len: 7}
-    }
-    var ba = bf.fromBuffer(buffStruct, inputBuffer);
-
-    expect(ba.toBuffer()).toEqual(['A','n','d','r','e'])
-  })
 });
