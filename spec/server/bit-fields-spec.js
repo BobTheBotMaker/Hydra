@@ -12,7 +12,7 @@ describe("Bit fields test suite", function () {
 
   var bitString = "1101101111";
   var bitArray = [1, 1, 0, 1, 1, 0, 1, 1, 1, 1];
-  var intArray = [115,110,112,208,85,128,0]
+  var intArray = [115,110,255,254,85,128,0]
 
   var intStructure = {
     f1: 8,
@@ -93,7 +93,14 @@ describe("Bit fields test suite", function () {
     var ba = bf.fromIntArray(intStructure, intArray);
 
     expect(ba.bitField.f1.data).toEqual([0,1,1,1,0,0,1,1]);
+    expect(ba.bitField.f3.data).toEqual([1,1,1,1,1,1,1,1]);
+    expect(ba.bitField.f6.data).toEqual([1,0,0,0,0,0,0,0]);
+
     expect(parseInt(ba.bitField.f1.toBase(10), 10)).toEqual(115);
+    expect(parseInt(ba.bitField.f3.toBase(10), 10)).toEqual(255);
+    expect(parseInt(ba.bitField.f4.toBase(10), 10)).toEqual(254);
+    expect(parseInt(ba.bitField.f6.toBase(10), 10)).toEqual(128);
+
   })
 
 });
