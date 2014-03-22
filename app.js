@@ -44,17 +44,18 @@ server.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-var testPub = function(){
-    bayeux.getClient().publish('/display1', {
-        v: " 3.45",
-        a: " 1.40"
-    });
- }
-
-setInterval(testPub,1000);
+//var testPub = function(){
+//    bayeux.getClient().publish('/display1', {
+//        v: " 3.45",
+//        a: " 1.40"
+//    });
+// }
+//
+//setInterval(testPub,1000);
 
 var hydraCallback = function(channel, volts, amps){
   console.log("Ch " + channel + " V " + volts + " A " + amps);
+  bayeux.getClient().publish('/display'+channel, {v: volts, a: amps});
 }
 
 hydra.connect(hydraCallback);

@@ -29,6 +29,7 @@ function HydraDisplay(canvasId, colorOn, colorOff, display) {
 
 function setupDisplay(fayeClient, displayOpts) {
   fayeClient.subscribe('/' + displayOpts.channel, function(message) {
+    console.log(message);
     displayOpts.display.setValue(message[displayOpts.measures]);
   });
 }
