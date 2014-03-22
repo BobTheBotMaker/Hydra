@@ -13,3 +13,4 @@ To Use
 2. Clone the repo
 3. node app.js
 
+Pull requests accepted
