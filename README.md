@@ -11,6 +11,7 @@ To Use
 
 1. Install node & npm
 2. Clone the repo
-3. node app.js
+3. npm install
+4. node app.js
 
 Pull requests accepted
