@@ -9,9 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var faye = require('faye');
 var path = require('path');
-
 var hydra = require('./lib/hydra.js');
-var sprintf = require("sprintf-js").sprintf;
 
 var app = express();
 
@@ -46,9 +44,7 @@ server.listen(app.get('port'), function(){
 });
 
 var hydraCallback = function(channel, volts, amps){
-  var v = sprintf("%4.2f", volts);
-  var a = sprintf("%4.2f", amps)
-  bayeux.getClient().publish('/display'+channel, {v: v, a: a});
+  bayeux.getClient().publish('/display'+channel, {v: volts, a: amps});
 }
 
 hydra.connect(hydraCallback);
