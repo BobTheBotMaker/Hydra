@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "Hydra.js",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
     "faye": "*",
     "serialport": "*",
     "node-bitarray": "*",
-    "sleep": "*" 
+    "sleep": "*",
+    "sprintf-js": "*"
   },
   "devDependencies": {
     "jasmine-node": "*",

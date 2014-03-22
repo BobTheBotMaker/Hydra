@@ -10,7 +10,8 @@ var http = require('http');
 var faye = require('faye');
 var path = require('path');
 
-var hydra = require('./lib/hydra.js')
+var hydra = require('./lib/hydra.js');
+var sprintf = require("sprintf-js").sprintf;
 
 var app = express();
 
@@ -44,18 +45,10 @@ server.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-//var testPub = function(){
-//    bayeux.getClient().publish('/display1', {
-//        v: " 3.45",
-//        a: " 1.40"
-//    });
-// }
-//
-//setInterval(testPub,1000);
-
 var hydraCallback = function(channel, volts, amps){
-  console.log("Ch " + channel + " V " + volts + " A " + amps);
-  bayeux.getClient().publish('/display'+channel, {v: volts, a: amps});
+  var v = sprintf("%4.2f", volts);
+  var a = sprintf("%4.2f", amps)
+  bayeux.getClient().publish('/display'+channel, {v: v, a: a});
 }
 
 hydra.connect(hydraCallback);
