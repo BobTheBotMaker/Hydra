@@ -10,7 +10,7 @@ var http = require('http');
 var faye = require('faye');
 var path = require('path');
 
-var hydraComm = require('./lib/hydra.js')
+var hydra = require('./lib/hydra.js')
 
 var app = express();
 
@@ -53,4 +53,8 @@ var testPub = function(){
 
 setInterval(testPub,1000);
 
-hydraComm.test();
+var hydraCallback = function(channel, volts, amps){
+  console.log("Ch " + channel + " V " + volts + " A " + amps);
+}
+
+hydra.connect(hydraCallback);
