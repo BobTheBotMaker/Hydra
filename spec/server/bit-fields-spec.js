@@ -83,12 +83,6 @@ describe("Bit fields test suite", function () {
     expect(ba.bitField.f3.toBase(10)).toEqual("11");
   })
 
-  it("should convert bits to octet strings", function(){
-    var ba = bf.fromBitArray(structure, bitArray);
-
-    expect(ba.bitField.f4.toOctets().length).toEqual(8);
-  })
-
   it("should convert an int array to bits", function(){
     var ba = bf.fromIntArray(intStructure, intArray);
 
